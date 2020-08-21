@@ -18,7 +18,7 @@ function App() {
         <>
             <Header title="ReactJS" />
 
-            <img src="{backgroundImage}" />
+            <img src={backgroundImage} />
 
             <button type="button" onClick={handleAddProject}>
                 Adicionar projeto
