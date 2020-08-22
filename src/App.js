@@ -9,7 +9,6 @@ function App() {
 
     useEffect(() => {
         api.get("projects").then((response) => {
-            console.log(response);
             setProjects(response.data);
         });
     }, []);
