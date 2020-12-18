@@ -1,12 +1,16 @@
 const path = require("path");
 
 module.exports = {
+    node: {
+        fs: "empty"
+    },
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "public"),
         filename: "bundle.js",
     },
     devServer: {
+        open: 'google-chrome',
         contentBase: path.resolve(__dirname, "public"),
     },
     module: {
