@@ -3,21 +3,27 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    devServer: {
-        open: 'google-chrome',
-        contentBase: path.resolve(__dirname, "dist"),
-        inline: false
-    },
-    node: {
-        fs: "empty"
-    },
-    entry: path.resolve(__dirname, "src", "index.js"),
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "main.js",
-    },
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.resolve(__dirname, "dist"),
+  },
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      inject: true,
+      template: path.resolve(__dirname, 'src', 'index.html'),
+    }),
+  ],
+  node: {
+    fs: "empty"
+  },
     module: {
         rules: [
             {
@@ -35,16 +41,5 @@ module.exports = {
                 use: { loader: "file-loader" },
             },
         ],
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            inject: true,
-            template: path.resolve(__dirname, 'src', 'index.html'),
-        }),
-    ],
-    resolve: {
-        extensions: [ '.js', '.jsx']
-    },
-};
+    }
+}
