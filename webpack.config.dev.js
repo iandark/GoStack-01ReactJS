@@ -3,24 +3,27 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    devServer: {
+        open: 'google-chrome',
+        contentBase: path.resolve(__dirname, "dist"),
+        inline: false
+    },
     node: {
         fs: "empty"
     },
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
-    },
-    devServer: {
-        open: 'google-chrome',
-        contentBase: path.resolve(__dirname, "dist"),
+        filename: "main.js",
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: { loader: "babel-loader" },
+                loader: "babel-loader",
             },
             {
                 test: /\.css$/,
@@ -40,5 +43,8 @@ module.exports = {
             inject: true,
             template: path.resolve(__dirname, 'src', 'index.html'),
         }),
-    ]
+    ],
+    resolve: {
+        extensions: [ '.js', '.jsx']
+    },
 };
