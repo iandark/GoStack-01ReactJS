@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
@@ -25,11 +25,6 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: "babel-loader",
-        },
-        {
-            test: /\.css$/,
-            exclude: /node_modules/,
-            use: [{ loader: "style-loader" }, { loader: "css-loader" }],
         },
         {
             test: /.*\.(gif|png|jpe?g)$/i,
